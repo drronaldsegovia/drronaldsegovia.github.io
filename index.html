@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Ronald Segovia Chilavert | Odontología Especializada</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #121212;
+            --text-main: #ffffff;
+            --text-muted: #aaaaaa;
+            --accent: #ffffff;
+            --card-bg: #1e1e1e;
+            --border: #333333;
+            --blue-tick: #0095f6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            background: rgba(18, 18, 18, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+        nav .brand { font-weight: 700; font-size: 1.1rem; letter-spacing: 1px; }
+        nav ul { display: flex; gap: 2rem; list-style: none; }
+        nav a { text-decoration: none; color: var(--text-main); font-weight: 500; font-size: 0.9rem; transition: color 0.3s; }
+        nav a:hover { color: var(--text-muted); }
+
+        /* Hero & IG Card */
+        .hero {
+            padding: 8rem 5% 4rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .ig-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 3rem;
+            width: 100%;
+            max-width: 800px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+        .ig-card:hover { transform: translateY(-5px); }
+
+        .ig-header {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .profile-pic {
+            position: relative;
+            width: 150px; height: 150px;
+            border-radius: 50%;
+            padding: 4px;
+            background: linear-gradient(45deg, #555555, #000000, #808080);
+            animation: rotate 4s linear infinite;
+        }
+        @keyframes rotate { 100% { filter: hue-rotate(360deg); } }
+        .profile-pic img {
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--bg-color);
+            background: var(--bg-color);
+        }
+
+        .ig-info { flex: 1; }
+        .ig-name-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .ig-handle { font-size: 1.8rem; font-weight: 300; }
+        .verified { color: var(--blue-tick); font-size: 1.2rem; display: flex; align-items: center; }
+
+        .ig-stats {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .stat span { font-weight: 600; color: var(--text-main); }
+        .stat { color: var(--text-muted); font-size: 1rem; }
+
+        .ig-bio h1 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.3rem; }
+        .ig-bio p { font-size: 0.95rem; white-space: pre-line; color: var(--text-main); }
+        .ig-category { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.5rem; display: block; }
+
+        .ig-actions { margin-top: 1.5rem; display: flex; gap: 1rem; }
+        .btn {
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        .btn-primary { background: var(--text-main); color: var(--bg-color); border: 1px solid var(--text-main); }
+        .btn-primary:hover { background: var(--bg-color); color: var(--text-main); }
+        .btn-secondary { background: #333333; color: var(--text-main); }
+        .btn-secondary:hover { background: #444444; }
+
+        /* Grid Preview in Card */
+        .mini-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            margin-top: 3rem;
+            border-top: 1px solid var(--border);
+            padding-top: 3rem;
+        }
+        .mini-grid img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 4px; transition: 0.3s; }
+        .mini-grid img:hover { filter: brightness(0.8); }
+
+        /* General Sections */
+        section { padding: 5rem 5%; max-width: 1200px; margin: 0 auto; }
+        .section-title { font-size: 2rem; font-weight: 300; margin-bottom: 3rem; text-align: center; text-transform: uppercase; letter-spacing: 2px; }
+
+        /* Skills/Services */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .service-card {
+            padding: 2rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 10px 30px rgba(255,255,255,0.05); border-color: var(--text-main); }
+        .service-card h3 { margin-bottom: 1rem; font-weight: 600; }
+        .service-card p { color: var(--text-muted); font-size: 0.9rem; }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        .gallery-item { position: relative; overflow: hidden; aspect-ratio: 1/1; border-radius: 8px; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .gallery-item:hover img { transform: scale(1.05); }
+
+        /* Footer */
+        footer { background: #000000; color: #ffffff; text-align: center; padding: 3rem 5%; }
+        
+        /* Animations */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .ig-header { flex-direction: column; text-align: center; gap: 1.5rem; }
+            .ig-stats { justify-content: center; }
+            .ig-actions { justify-content: center; }
+            nav ul { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="brand">DR. SEGOVIA CHILAVERT</div>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#sobre-mi">Especialidades</a></li>
+            <li><a href="#galeria">Casos Clínicos</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero" id="inicio">
+        <div class="ig-card reveal">
+            <div class="ig-header">
+                <div class="profile-pic">
+                    <img src="profile.jpg" alt="Dr. Ronald Segovia Chilavert">
+                </div>
+                <div class="ig-info">
+                    <div class="ig-name-row">
+                        <h2 class="ig-handle">dr.segoviachilavert</h2>
+                        <span class="verified">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-1.9 14.7L6 12.6l1.5-1.5 2.6 2.6 6.4-6.4 1.5 1.5-7.9 7.9z"/></svg>
+                        </span>
+                    </div>
+                    <div class="ig-stats">
+                        <div class="stat"><span>10</span> publicaciones</div>
+                        <div class="stat"><span>200</span> seguidores</div>
+                        <div class="stat"><span>194</span> seguidos</div>
+                    </div>
+                    <div class="ig-bio">
+                        <h1>Dr. Ronald Segovia Chilavert</h1>
+                        <span class="ig-category">Salud/belleza | Odontología</span>
+                        <p>🎓 Dr. en Odontología | UNA 🇵🇾
+                        🔜 Esp. Implantes y Odontología Digital | SLM ⚜️🇧🇷
+                        🎓 Cirugía Bucomaxilar | ILES 🇵🇾
+                        📲 Agendamientos 👇🏽</p>
+                    </div>
+                    <div class="ig-actions">
+                        <a href="https://api.whatsapp.com/send?phone=595976584718&text=Hola!+Quiero+agendar+una+consulta+%F0%9F%A6%B7" class="btn btn-primary" target="_blank">Agendar Consulta</a>
+                        <a href="https://www.instagram.com/dr.segoviachilavert" class="btn btn-secondary" target="_blank">Ver Instagram</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mini-grid">
+                <img src="post-1.jpg" alt="Post 1">
+                <img src="post-2.jpg" alt="Post 2">
+                <img src="post-3.jpg" alt="Post 3">
+            </div>
+        </div>
+    </div>
+
+    <section id="sobre-mi" class="reveal">
+        <h2 class="section-title">Especialidades Clínicas</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Implantes y Odontología Digital</h3>
+                <p>Planificación digital avanzada para rehabilitaciones precisas, estéticas y funcionales.</p>
+            </div>
+            <div class="service-card">
+                <h3>Cirugía Bucomaxilar</h3>
+                <p>Procedimientos quirúrgicos especializados, extracciones complejas y cuidado integral.</p>
+            </div>
+            <div class="service-card">
+                <h3>Odontología General</h3>
+                <p>Prevención, diagnóstico y tratamiento para mantener tu salud bucal en óptimas condiciones. Soluciones ajustadas a cada paciente.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeria" class="reveal">
+        <h2 class="section-title">Portafolio Visual</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="post-4.jpg"></div>
+            <div class="gallery-item"><img src="post-5.jpg"></div>
+            <div class="gallery-item"><img src="post-6.jpg"></div>
+            <div class="gallery-item"><img src="post-7.jpg"></div>
+            <div class="gallery-item"><img src="post-8.jpg"></div>
+            <div class="gallery-item"><img src="post-9.jpg"></div>
+        </div>
+    </section>
+
+    <footer id="contacto">
+        <h2>Agenda tu cita</h2>
+        <p style="margin: 1rem 0 2rem; color: #aaaaaa;">Comienza tu tratamiento con profesionales altamente capacitados.</p>
+        <a href="https://api.whatsapp.com/send?phone=595976584718&text=Hola!+Quiero+agendar+una+consulta+%F0%9F%A6%B7" class="btn btn-secondary" style="background: white; color: black; padding: 1rem 2rem;" target="_blank">Contactar por WhatsApp</a>
+        <p style="margin-top: 4rem; font-size: 0.8rem; color: #666666;">© 2026 Dr. Ronald Segovia Chilavert. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Animaciones al hacer scroll
+        const reveals = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 100;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Trigger inicial
+    </script>
+</body>
+</html>
